@@ -1,3 +1,5 @@
+あああああああああ
+
 docker 開く
 vscode 拡張機能をダウンロード
 	docker
