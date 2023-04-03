@@ -1,0 +1,84 @@
+docker 開く
+vscode 拡張機能をダウンロード
+	docker
+	remote development
+
+
+初回-------------------------------------------------------------
+1.vscode でpy_eat フォルダを開く
+	➙　右下に何かでてくるので、それを実行
+2.実行後が終了したら、vscode上でターミナルを開く
+3.django-admin startproject py_eat_App . と入力
+4.python manage.py runserver
+	➙　エラーの場合は、 python manage.py migrate
+
+管理者画面設定
+上の続き
+1.コントーロール + C を押す
+
+2.py_eat_App ➙　settings.py
+	以下を変更
+	LANGUAGE_CODE = 'ja'
+	TIME_ZONE = 'Asia/Tokyo'
+
+3.py_eat_App ➙　settings.py
+	以下を変更 (DB名やユーザ、パスワードなどは、docker-compose.ymlの「db」に記載と同じ)
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'django_sample',
+        'USER': 'postgres',
+        'PASSWORD': 'password',
+        'HOST': 'db',
+        'PORT': 5432,
+    }
+}
+
+4.python manage.py migrate
+
+5.python manage.py createsuperuser
+　設定
+	ID:Administrator
+	mail:ラクス
+	ps:admin_rakus
+
+4.python manage.py runserver  
+	➙　何も入って無いように見えるけど、ちゃんと書けてるから間違えないように気を付けてね
+5.http://localhost:8000/admin/ を開く
+6.id と ps を入力(2のやつ)
+7.中に入れるか確認するだけ
+
+
+DB設定
+上の続き
+1.http://localhost:8888/ にアクセス
+2.ログイン
+	➙　メールアドレス、パスワードは、docker-compose.ymlの「pgadmin4」 初期値↓にしてある
+	email:xxxxxxxxxx@gmail.com
+	ps:password
+
+3.add New Server を選択
+
+4.General タブを選択
+	Name:Py_Eat
+
+5.connection タブを選択(DB名やユーザ、パスワードなどは、docker-compose.ymlの「db」に記載通りにする)
+	Hostname/address:db
+	Maintenance fatabase:django_sample
+	Username:postgres
+	Password:password
+	Save password?:True
+	Saveボタンを押下
+
+6.ダッシュボードが表示されればok
+7.クエリを開いて以下を打ち込む
+	select * from auth_user
+8.先ほど打ち込んだ、usernameとemaaillが表示されるはず
+	➙　psはいつも通り、ハッシュにて保存されている
+
+
+２回目以降--------------------------------------------------------
+vscode 上で
+python manage.py runserver
+
+docker compose up
