@@ -1,3 +1,4 @@
+変更を加えて見ましたよ～　ここを含めて3か所ね、見つけてみてね
 docker 開く
 vscode 拡張機能をダウンロード
 	docker
@@ -33,7 +34,7 @@ DATABASES = {
         'PORT': 5432,
     }
 }
-
+ここに文字を入れてみたよ～
 4.python manage.py migrate
 
 5.python manage.py createsuperuser
@@ -58,7 +59,7 @@ DB設定
 	ps:password
 
 3.add New Server を選択
-
+見つけられたかな～＾。＾
 4.General タブを選択
 	Name:Py_Eat
 
